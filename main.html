@@ -20,17 +20,16 @@
 			</header>
 			<canvas id="test"width="400"height="400"></canvas>
 			
-			<script type="text/javascript" src="resource/js/jsc3d/jsc3d.min.js"></script>
+			<script type="text/javascript" src="resource/js/jsc3d/jsc3d.js"></script>
 			<script type="text/javascript">
 				var canvas = document.getElementById('test');
 				var viewer = new JSC3D.Viewer(canvas);
 				viewer.setParameter('SceneUrl', 'resource/models/Test.obj');
 				viewer.setParameter('InitRotationX', 0);
-				viewer.setParameter('InitRotationY', 30);
-				viewer.setParameter('InitRotationZ', 0);
+				viewer.setParameter('InitRotationY', -90);
+				viewer.setParameter('InitRotationZ', 90);
 				viewer.setParameter('ModelColor', '#57524C');
 				viewer.setParameter('BackgroundColor1', '#FFFFFF');
-				viewer.setParameter('BackgroundColor2', '#000000');
 				viewer.setParameter('RenderMode', 'texturesmooth');
 				viewer.setParameter('MipMapping', 'on');
 				viewer.init();
