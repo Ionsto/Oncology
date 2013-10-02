@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+
+		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+		Remove this if you use the .htaccess -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+		<title>Main</title>
+		<meta name="description" content="VoxTox viewer">
+		<meta name="author" content="Sam">
+		
+	</head>
+
+	<body>
+		<div>
+			<header>
+				<h1>VOXTOX</h1>
+			</header>
+			<canvas id="test" width="400" height="400" ></canvas>
+			
+			<script type="text/javascript">
+				var Back = new Image();
+				Back.src = "resource/images/Back.png"
+				var canvas = document.getElementById('test');
+				var ctx = canvas.getContext("2d");
+				alert("Hia");
+				ctx.fillStyle="#FF0000";
+				ctx.fillRect(0,0,100,100);
+			</script>
+			<footer>
+				<p>
+					&copy; Copyright  by Sam
+				</p>
+			</footer>
+		</div>
+	</body>
+</html>
