@@ -21,13 +21,22 @@
 			<canvas id="test" width="400" height="400" ></canvas>
 			
 			<script type="text/javascript">
-				var Back = new Image();
-				Back.src = "resource/images/Back.png"
+				var Back = new Image(400,300);
+				Back.src = "resource/images/Back.png";
+				//
+				function ClickUp(e){
+					
+				}
+				function ClickDown(e){
+					alert("Hey X:" + e.X + ",Y:" + e.Y);
+				}
+				//
 				var canvas = document.getElementById('test');
 				var ctx = canvas.getContext("2d");
-				alert("Hia");
-				ctx.fillStyle="#FF0000";
-				ctx.fillRect(0,0,100,100);
+				canvas.addEventListener('mousedown', function(e){ClickUp(e);}, false);
+				canvas.addEventListener('mouseup', function(e){ClickDown(e);}, false);
+				//
+				ctx.drawImage(Back,0,0);
 			</script>
 			<footer>
 				<p>
