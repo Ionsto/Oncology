@@ -1,0 +1,9 @@
+JSC3D is an online 3D model viewer and toolkit based on HTML5 and Javascript. It is very handy for design sharing and product exhibition. JSC3D is widely compatible with almost all major browsers. A modified version for InternetExplorer(version<9) is also available.
+
+Supported File Formats:
+- Wavefront obj
+- STL (both binary and ascii)
+
+JSC3D is freely distributable under the terms of the MIT license.
+
+The project is hosted at http://code.google.com/p/jsc3d/.

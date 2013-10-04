@@ -19,22 +19,28 @@
 				<h1>VOXTOX</h1>
 			</header>
 			<canvas id="test" width="400" height="400" ></canvas>
-			
+			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 			<script type="text/javascript">
 				var Back = new Image(400,300);
-				Back.src = "resource/images/Back.png";
-				//
+				Back.src = "E:/Oncology/Click_View/resource/images/Back.png";
+				/*xmlDoc = $.parseXML( xml ),
+			    $xml = $( xmlDoc ),
+				$title = $xml.find( "title" );
+				// Append "RSS Title" to #someElement
+				$( "#someElement" ).append( $title.text() );
+				$title.text( "XML Title" );
+				// Append "XML Title" to #anotherElement
+				$( "#anotherElement" ).append( $title.text() );
+				//*/
 				function ClickUp(e){
-					
+					var position = $(canvas).position();
+					var x = e.pageX-position.left;
+					var y = e.pageY-position.top;
+					alert("Hey X:"+x + ",Y:"+y);
 				}
-				function ClickDown(e){
-					alert("Hey X:" + e.X + ",Y:" + e.Y);
-				}
-				//
 				var canvas = document.getElementById('test');
 				var ctx = canvas.getContext("2d");
-				canvas.addEventListener('mousedown', function(e){ClickUp(e);}, false);
-				canvas.addEventListener('mouseup', function(e){ClickDown(e);}, false);
+				canvas.addEventListener('mouseup', function(e){ClickUp(e);}, false);
 				//
 				ctx.drawImage(Back,0,0);
 			</script>
