@@ -21,11 +21,35 @@
 			<canvas id="test" width="400" height="400" ></canvas>
 			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 			<script type="text/javascript">
+				function Cpoint()
+				{
+					this.X = 0;
+					this.Y = 0;
+					this.SX = 0;
+					this.SY = 0;
+					this.Name = "";
+				}				
+				var CanArr = new Array(0);
+				var CanArrCount = 0;
 				var Back = new Image(400,300);
 				Back.src = "resource/images/Back.png";
-				/*xmlDoc = $.parseXML( xml ),
-			    $xml = $( xmlDoc ),
-				$title = $xml.find( "title" );
+				$.ajax({
+					url:"resource/xml/cancer.xml",
+					dataType:"xml",
+					success:function(xml) {
+						alert("yay");
+						var xml_node = $('xml',xml);
+						alert(xml_node.find( "amount" ).text());
+						CanArrCount = int(xml_node.find( "amount" ).text());
+						CanArr = new Array(CanArrCount);
+					}
+				});
+				//var xml = "";
+				
+				//xmlDoc = $.parseXML( "/resource/xml/cancer.xml" );
+			    //$xml = $( xmlDoc );
+				//var CPointArr = new Array(int($xml.find( "amount" )))
+				/*$title = $xml.find( "title" );
 				// Append "RSS Title" to #someElement
 				$( "#someElement" ).append( $title.text() );
 				$title.text( "XML Title" );
