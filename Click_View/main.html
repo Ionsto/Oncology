@@ -43,7 +43,7 @@
 						CanArrCount = parseInt(xml.find( "amount" ).text());
 						CanArr = new Array(CanArrCount);
 						var Set = 0;
-						$(xml).find("cancer").each(function(){
+						$(xml).find("data").each(function(){
 							CanArr[Set] = new Cpoint();
 							CanArr[Set].Name = $(this).find("name").text();
 							CanArr[Set].X = parseFloat($(this).find("box").find("posX").text());
@@ -90,12 +90,30 @@
 						}
 					}
 				}
+				var todraw = -1;
+				function ClickMove(e){
+					var position = $(canvas).position();
+					var x = e.pageX-position.left;
+					var y = e.pageY-position.top;
+					for(var i = 0;i < CanArrCount;++i)
+					{
+						if(InBox(x,y,CanArr[i]))//Check in box
+						{
+							todraw = 1;
+						}
+					}
+				}
 				var canvas = document.getElementById('test');
 				var ctx = canvas.getContext("2d");
 				canvas.addEventListener('mouseup', function(e){ClickUp(e);}, false);
-				//canvas.addEventListener('mousemove', function(e){ClickUp(e);}, false);
+				canvas.addEventListener('mousemove', function(e){ClickMove(e);}, false);
 				//
-				ctx.drawImage(Back,0,0);
+				function MainLoop()
+				{
+					ctx.drawImage(Back,0,0);
+					setTimeout("MainLoop();",500);
+				}
+				MainLoop();
 			</script>
 			<footer>
 				<p>
