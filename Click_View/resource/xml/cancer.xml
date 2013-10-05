@@ -8,6 +8,7 @@
 			<sizeX>40.5</sizeX><sizeY>42</sizeY><!-- half full size !-->
 		</box>
 	</cancer>
+	
 	<cancer>
 		<name>Prostate</name> 
 		<box>
@@ -15,4 +16,5 @@
 			<sizeX>38</sizeX><sizeY>30</sizeY>
 		</box>
 	</cancer>
+	
 </xml>
