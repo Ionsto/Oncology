@@ -1,10 +1,18 @@
 <xml>
-<amount>1</amount>
-<cancer>
-<name>Head and neck</name> 
-<box>
-<pos X="0" Y="0"></pos>
-<size X="0" Y="0"></size>
-</box>
-</cancer>
+	<amount>2</amount>
+	
+	<cancer><!-- one 'cancer' node for each spot e.g. head and neck  !-->
+		<name>Head and neck</name> 
+		<box>
+			<posX>121.5</posX><posY>42</posY><!-- Mid point !-->
+			<sizeX>40.5</sizeX><sizeY>42</sizeY><!-- half full size !-->
+		</box>
+	</cancer>
+	<cancer>
+		<name>Prostate</name> 
+		<box>
+			<posX>118</posX><posY>236</posY>
+			<sizeX>38</sizeX><sizeY>30</sizeY>
+		</box>
+	</cancer>
 </xml>

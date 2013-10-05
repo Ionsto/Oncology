@@ -18,9 +18,11 @@
 			<header>
 				<h1>VOXTOX</h1>
 			</header>
-			<canvas id="test" width="400" height="400" ></canvas>
+			<canvas id="test" width="243" height="368" ></canvas>
 			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 			<script type="text/javascript">
+				var DEBUG = true;
+			
 				function Cpoint()
 				{
 					this.X = 0;
@@ -37,11 +39,19 @@
 					url:"resource/xml/cancer.xml",
 					dataType:"xml",
 					success:function(xml) {
-						alert("yay");
-						var xml_node = $('xml',xml);
-						alert(xml_node.find( "amount" ).text());
-						CanArrCount = int(xml_node.find( "amount" ).text());
+						var xml = $('xml',xml);
+						CanArrCount = parseInt(xml.find( "amount" ).text());
 						CanArr = new Array(CanArrCount);
+						var Set = 0;
+						$(xml).find("cancer").each(function(){
+							CanArr[Set] = new Cpoint();
+							CanArr[Set].Name = $(this).find("name").text();
+							CanArr[Set].X = parseFloat($(this).find("box").find("posX").text());
+							CanArr[Set].Y = parseFloat($(this).find("box").find("posY").text());
+							CanArr[Set].SX = parseFloat($(this).find("box").find("sizeX").text());
+							CanArr[Set].SY = parseFloat($(this).find("box").find("sizeY").text());
+							Set += 1;
+						});
 					}
 				});
 				//var xml = "";
@@ -56,21 +66,39 @@
 				// Append "XML Title" to #anotherElement
 				$( "#anotherElement" ).append( $title.text() );
 				//*/
+				function InBox(Xmouse,Ymouse,Can)
+				{
+					if(Xmouse > Can.X - Can.SX && Xmouse < Can.X + Can.SX)
+					{
+						if(Ymouse > Can.Y - Can.SY && Ymouse < Can.Y + Can.SY)
+						{
+							return true;
+						}
+					}
+					return false;
+				}
 				function ClickUp(e){
 					var position = $(canvas).position();
 					var x = e.pageX-position.left;
 					var y = e.pageY-position.top;
-					alert("Hey X:"+x + ",Y:"+y);
+					if(DEBUG == true){alert("X:"+x + ",Y:"+y);}
+					for(var i = 0;i < CanArrCount;++i)
+					{
+						if(InBox(x,y,CanArr[i]))//Check in box
+						{
+							if(DEBUG == true){alert(CanArr[i].Name);}
+						}
+					}
 				}
 				var canvas = document.getElementById('test');
 				var ctx = canvas.getContext("2d");
 				canvas.addEventListener('mouseup', function(e){ClickUp(e);}, false);
+				//canvas.addEventListener('mousemove', function(e){ClickUp(e);}, false);
 				//
 				ctx.drawImage(Back,0,0);
 			</script>
 			<footer>
 				<p>
-					&copy; Copyright  by Sam
 				</p>
 			</footer>
 		</div>
