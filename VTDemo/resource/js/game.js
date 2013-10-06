@@ -14,8 +14,8 @@ function World()
 	this.CellRender = new Array(this.CellCount);
 	for(var i = 0;i< this.CellCount;++i)
 	{
-		this.Cells = new Group();
-		this.CellRender = true;
+		this.Cells[i] = new Group(50,50);
+		this.CellRender[i] = true;
 	}
 	if(DEBUG){console.log("built group");}
 	this.Update = function(){

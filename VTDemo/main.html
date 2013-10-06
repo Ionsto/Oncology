@@ -23,34 +23,38 @@
 			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 			<script type="text/javascript">
 				var DEBUG = true;
+				if(typeof console == "undefined"){
+					DEBUG = false;
+				}
 				var canvas = document.getElementById('render');
 				var ctx = canvas.getContext("2d");
 				var worlds;
 				//function 
 				function MainLoop()
 				{
-					//if(DEBUG){console.log("update");}
+					if(DEBUG){console.log("update");}
 					//world.Update();
-					if(world.Clear == true)
+					if(worlds.Clear == true)//clear if updated
 					{
-						//ctx.clearRect(0,0,100,100);
-						world.Clear = false;
+						ctx.clearRect(0,0,100,100);
+						worlds.Clear = false;
 					}
-					//if(DEBUG){console.log("clear");}
+					if(DEBUG){console.log("clear");}
 					for(var i = 0;i <worlds.CellCount;++i)
 					{
-						//if(worlds.CellRender[i] == true)
-						//{
-							ctx.fillStyle = "#FF0000";
-							ctx.fillRect(20,20,150,100); 
-							//worlds.CellRender[i] = false;
-						//}
+						if(worlds.CellRender[i] == true)
+						{
+							ctx.fillStyle = "#FF0000";//Render
+							ctx.fillRect(worlds.Cells[i].X-10,worlds.Cells[i].Y-10,20,20); 
+							worlds.CellRender[i] = false;
+						}
 					}
+					worlds.Cells[0].X += 1;
 					setTimeout("MainLoop()",200);
 				}
 				worlds = new World();
-				//if(DEBUG){console.log("built world");}
-				MainLoop();
+				if(DEBUG){console.log("built world");}
+				//MainLoop();
 			</script>
 			<footer>
 				<p>
