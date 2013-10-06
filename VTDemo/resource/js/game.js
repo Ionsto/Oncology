@@ -13,8 +13,5 @@ function World()
 	{
 		this.Cells = new Group();
 	}
-	this.Gen = function()
-	{
-		
-	};
+	
 };
