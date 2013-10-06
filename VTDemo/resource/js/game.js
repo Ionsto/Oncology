@@ -8,14 +8,17 @@ function Group(x,y)// one part of the person
 }
 function World()
 {
+	this.Clear = true;
 	this.CellCount = 50;
-	this.Cells = new Array(50);
+	this.Cells = new Array(this.CellCount);
+	this.CellRender = new Array(this.CellCount);
 	for(var i = 0;i< this.CellCount;++i)
 	{
 		this.Cells = new Group();
+		this.CellRender = true;
 	}
 	if(DEBUG){console.log("built group");}
-	this.Update = function()
-	{
+	this.Update = function(){
+	
 	};
 }
