@@ -26,6 +26,27 @@
 				if(typeof console == "undefined"){
 					DEBUG = false;
 				}
+				$.ajax({//Loading function
+					url:"resource/xml/test.xml",
+					dataType:"xml",
+					success:function(xml) {
+						var xml = $('xml',xml);
+						//CanArrCount = parseInt(xml.find( "amount" ).text());
+						//CanArr = new Array(CanArrCount);
+						var Set = 0;
+						$(xml).find("data").each(function()						{
+						$(this).find("cell").each(function(){
+							//CanArr[Set] = new Cpoint();
+							//CanArr[Set].Name = $(this).find("name").text();
+							//CanArr[Set].X = parseFloat($(this).find("box").find("posX").text());
+							//CanArr[Set].Y = parseFloat($(this).find("box").find("posY").text());
+							//CanArr[Set].SX = parseFloat($(this).find("box").find("sizeX").text());
+							//CanArr[Set].SY = parseFloat($(this).find("box").find("sizeY").text());
+							Set += 1;
+						});
+						});
+					}
+				});
 				var canvas = document.getElementById('render');
 				var ctx = canvas.getContext("2d");
 				var worlds;
