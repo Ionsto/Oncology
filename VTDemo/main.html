@@ -26,31 +26,33 @@
 				if(typeof console == "undefined"){
 					DEBUG = false;
 				}
-				$.ajax({//Loading function
-					url:"resource/xml/test.xml",
-					dataType:"xml",
-					success:function(xml) {
-						var xml = $('xml',xml);
-						//CanArrCount = parseInt(xml.find( "amount" ).text());
-						//CanArr = new Array(CanArrCount);
-						var Set = 0;
-						$(xml).find("data").each(function()						{
-						$(this).find("cell").each(function(){
-							//CanArr[Set] = new Cpoint();
-							//CanArr[Set].Name = $(this).find("name").text();
-							//CanArr[Set].X = parseFloat($(this).find("box").find("posX").text());
-							//CanArr[Set].Y = parseFloat($(this).find("box").find("posY").text());
-							//CanArr[Set].SX = parseFloat($(this).find("box").find("sizeX").text());
-							//CanArr[Set].SY = parseFloat($(this).find("box").find("sizeY").text());
-							Set += 1;
-						});
-						});
-					}
-				});
 				var canvas = document.getElementById('render');
 				var ctx = canvas.getContext("2d");
 				var worlds;
-				//function 
+				function LoadWorld(files)
+				{
+					$.ajax({//Loading function
+						url:"resource/xml/"+files+".xml",
+						dataType:"xml",
+						success:function(xml) {
+							var xml = $('xml',xml);
+							//CanArrCount = parseInt(xml.find( "amount" ).text());
+							//CanArr = new Array(CanArrCount);
+							worlds = new World(parseInt(xml.find( "Xsize" ).text())
+											,parseInt(xml.find( "Ysize" ).text()));
+							$(xml).find("data").each(function(){
+							var Set = 0;
+							$(this).find("cell").each(function(){
+								worlds.Cells[Set].Type = parseInt($(this).text());
+								worlds.Cells[Set].X = ~~((Set/worlds.SizeX) - ~~(Set/worlds.SizeX)*worlds.SizeX) - 1;
+								worlds.Cells[Set].Y = ~~(Set/worlds.SizeX) - 1;
+								console.log(worlds.Cells[Set].X);
+								Set += 1;
+							});
+							});
+						}
+					});
+				}
 				function MainLoop()
 				{
 					if(DEBUG){console.log("update");}
@@ -75,7 +77,14 @@
 				}
 				worlds = new World();
 				if(DEBUG){console.log("built world");}
-				//MainLoop();
+				if(LoadWorld("test"))
+				{
+					MainLoop();
+				}
+				else
+				{
+					alert("load failed");
+				}
 			</script>
 			<footer>
 				<p>
