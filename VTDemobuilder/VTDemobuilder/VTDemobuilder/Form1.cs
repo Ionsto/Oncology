@@ -47,13 +47,13 @@ namespace VTDemobuilder
 
         private void button1_Click(object sender, EventArgs e)
         {
-            XML += "<xml>\n";
+            XML = "<xml>\n";
             //Set data such as size
             XML += "<Xsize>" + textBox1.Lines[0].Split(' ').Length + "</Xsize>\n";
             XML += "<Ysize>" + textBox1.Lines.Length + "</Ysize>\n";
             //Set The types
             XML += "<type>\n";
-            for (int i = 0;i < dataGridView1.Rows.Count; ++i)
+            for (int i = 0;i < dataGridView1.Rows.Count -1; ++i)
             {
                 XML += "<celltype>\n";
                 XML += "<id>" + dataGridView1.Rows[i].Cells[0].Value + "</id>\n";

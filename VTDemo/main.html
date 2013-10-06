@@ -10,6 +10,8 @@
 		<title>VOXTOX</title>
 		<meta name="description" content="VoxTox">
 		<meta name="author" content="Sam">
+		<script src="resource/js/game.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		
 	</head>
 
@@ -19,8 +21,6 @@
 				<h1>VOXTOX</h1>
 			</header>
 			<canvas id="render"width="400"height="400"></canvas>
-			<script type="text/javascript" src="resource/js/game.js"></script>
-			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 			<script type="text/javascript">
 				var DEBUG = true;
 				if(typeof console == "undefined"){
@@ -28,63 +28,100 @@
 				}
 				var canvas = document.getElementById('render');
 				var ctx = canvas.getContext("2d");
-				var worlds;
+				var worlds = new World(0,0);
 				function LoadWorld(files)
 				{
-					$.ajax({//Loading function
+					var succed = true;
+					$.when($.ajax({//Loading function
 						url:"resource/xml/"+files+".xml",
 						dataType:"xml",
+						async:false,
 						success:function(xml) {
+							if(DEBUG){console.log("load");}
 							var xml = $('xml',xml);
-							//CanArrCount = parseInt(xml.find( "amount" ).text());
-							//CanArr = new Array(CanArrCount);
 							worlds = new World(parseInt(xml.find( "Xsize" ).text())
 											,parseInt(xml.find( "Ysize" ).text()));
+							$("#render").attr("width",worlds.SizeX * 20);
+							$("#render").attr("height",worlds.SizeY * 20);
+							$(xml).find("type").each(function(){
+								var Set = 0;
+								$(this).find("celltype").each(function(){
+									worlds.Types[Set] = new CellType();
+									worlds.Types[Set].Id = parseInt($(this).find("id").text());
+									worlds.Types[Set].Name = $(this).find("name").text();
+									worlds.Types[Set].RadLim = parseFloat($(this).find("rad").text());
+									worlds.Types[Set].Col = parseInt($(this).find("colour").text());
+									Set += 1;
+								});
+							});
 							$(xml).find("data").each(function(){
-							var Set = 0;
-							$(this).find("cell").each(function(){
-								worlds.Cells[Set].Type = parseInt($(this).text());
-								worlds.Cells[Set].X = ~~((Set/worlds.SizeX) - ~~(Set/worlds.SizeX)*worlds.SizeX) - 1;
-								worlds.Cells[Set].Y = ~~(Set/worlds.SizeX) - 1;
-								console.log(worlds.Cells[Set].X);
-								Set += 1;
+								Set = 0;
+								$(this).find("cell").each(function(){
+									worlds.Cells[Set].Type = parseInt($(this).text());
+									worlds.Cells[Set].Y = (~~(Set/worlds.SizeX)+1);
+									worlds.Cells[Set].X = (( ((Set/worlds.SizeX) - (worlds.Cells[Set].Y-1)) * worlds.SizeX) +1);
+									worlds.Cells[Set].Y *= 20.0;
+									worlds.Cells[Set].X *= 20.0;
+									worlds.Cells[Set].X -= 10.0;
+									worlds.Cells[Set].Y -= 10.0;
+									if(DEBUG){console.log("X,%f:Y,%f,Id:%f",worlds.Cells[Set].X,worlds.Cells[Set].Y,Set);}
+									Set += 1;
+								});
 							});
-							});
+							succed = true;
+							return;
+						},
+						error:function(err) {
+							succed = false;
+							if(DEBUG){console.log("failed");}
 						}
+					})).then(function ()
+					{
+						if(DEBUG){console.log("loaded");}
+						return succed;
 					});
+					if(DEBUG){console.log("may loaded");}
+					return succed;
 				}
 				function MainLoop()
 				{
-					if(DEBUG){console.log("update");}
+					//if(DEBUG){console.log("update");}
 					//world.Update();
 					if(worlds.Clear == true)//clear if updated
 					{
-						ctx.clearRect(0,0,100,100);
+						ctx.clearRect(0,0,$(canvas).width(),$(canvas).height());
 						worlds.Clear = false;
 					}
-					if(DEBUG){console.log("clear");}
+					//if(DEBUG){console.log("clear");}
 					for(var i = 0;i <worlds.CellCount;++i)
 					{
 						if(worlds.CellRender[i] == true)
 						{
-							ctx.fillStyle = "#FF0000";//Render
-							ctx.fillRect(worlds.Cells[i].X-10,worlds.Cells[i].Y-10,20,20); 
-							worlds.CellRender[i] = false;
+							if(typeof worlds.Cells[i] != "undefined")
+							{
+								if(typeof worlds.Types[worlds.Cells[i].Type] != "undefined")
+								{
+									ctx.fillStyle = worlds.ColourArr[worlds.Types[worlds.Cells[i].Type].Col];//Render
+									ctx.fillRect(worlds.Cells[i].X-10,worlds.Cells[i].Y-10,20,20); 
+									worlds.CellRender[i] = false;
+								}
+							}
 						}
 					}
-					worlds.Cells[0].X += 1;
 					setTimeout("MainLoop()",200);
 				}
-				worlds = new World();
-				if(DEBUG){console.log("built world");}
-				if(LoadWorld("test"))
-				{
-					MainLoop();
-				}
-				else
-				{
-					alert("load failed");
-				}
+				$( document ).ready(function (){
+					if(DEBUG){console.log("built world");}
+					if(LoadWorld("test") == true)
+					{
+						alert("loading Complete");
+						MainLoop();
+					}
+					else
+					{
+						alert("load failed");
+					}
+				});
 			</script>
 			<footer>
 				<p>
