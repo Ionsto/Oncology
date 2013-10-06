@@ -54,18 +54,6 @@
 						});
 					}
 				});
-				//var xml = "";
-				
-				//xmlDoc = $.parseXML( "/resource/xml/cancer.xml" );
-			    //$xml = $( xmlDoc );
-				//var CPointArr = new Array(int($xml.find( "amount" )))
-				/*$title = $xml.find( "title" );
-				// Append "RSS Title" to #someElement
-				$( "#someElement" ).append( $title.text() );
-				$title.text( "XML Title" );
-				// Append "XML Title" to #anotherElement
-				$( "#anotherElement" ).append( $title.text() );
-				//*/
 				function InBox(Xmouse,Ymouse,Can)
 				{
 					if(Xmouse > Can.X - Can.SX && Xmouse < Can.X + Can.SX)
@@ -90,12 +78,42 @@
 						}
 					}
 				}
+				var todraw = -1;
+				function ClickMove(e){
+					var position = $(canvas).position();
+					var x = e.pageX-position.left;
+					var y = e.pageY-position.top;
+					todraw = -1;
+					for(var i = 0;i < CanArrCount;++i)
+					{
+						if(InBox(x,y,CanArr[i]))//Check in box
+						{
+							todraw = i;
+						}
+					}
+				}
 				var canvas = document.getElementById('test');
 				var ctx = canvas.getContext("2d");
 				canvas.addEventListener('mouseup', function(e){ClickUp(e);}, false);
-				//canvas.addEventListener('mousemove', function(e){ClickUp(e);}, false);
+				canvas.addEventListener('mousemove', function(e){ClickMove(e);}, false);
 				//
-				ctx.drawImage(Back,0,0);
+				function MainLoop()
+				{
+					ctx.clearRect(0,0,$(canvas).width(),$(canvas).height());
+					ctx.drawImage(Back,0,0);
+					if(todraw != -1)
+					{
+      					ctx.globalAlpha = 0.5;
+						ctx.fillStyle="#FFFFAA";
+						ctx.fillRect(CanArr[todraw].X-CanArr[todraw].SX,CanArr[todraw].Y-CanArr[todraw].SY,CanArr[todraw].SX*2,CanArr[todraw].SY*2);
+						ctx.globalAlpha = 1;
+						ctx.fillStyle="#000000";
+						ctx.fillText(CanArr[todraw].Name,CanArr[todraw].X-CanArr[todraw].SX,CanArr[todraw].Y - (CanArr[todraw].SY - 20));
+					}
+					setTimeout("MainLoop();",200);
+				}
+				ctx.font="15px Verdana";
+				MainLoop();
 			</script>
 			<footer>
 				<p>
