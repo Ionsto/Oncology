@@ -7,7 +7,7 @@
 		Remove this if you use the .htaccess -->
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-		<title>Main</title>
+		<title>VOXTOX</title>
 		<meta name="description" content="VoxTox viewer">
 		<meta name="author" content="Sam">
 		
@@ -21,14 +21,20 @@
 			<canvas id="test"width="400"height="400"></canvas>
 			<script type="text/javascript" src="resource/js/game.js"></script>
 			<script type="text/javascript">
+				var DEBUG = true;
 				var canvas = document.getElementById('test');
 				var ctx = canvas.getContext("2d");
-				function 
+				var world;
+				//function 
 				function Update()
 				{
-					
+					world.Update();
+					ctx.clearRect(0,0,$(canvas.width),$(canvas).height);
 					setTimeout("Update",100);
 				}
+				world = World();
+				if(DEBUG){console.log("built world");}
+				Update();
 			</script>
 			<footer>
 				<p>
