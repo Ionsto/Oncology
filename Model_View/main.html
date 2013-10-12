@@ -21,10 +21,11 @@
 			<canvas id="test"width="400"height="400"></canvas>
 			
 			<script type="text/javascript" src="resource/js/jsc3d/jsc3d.js"></script>
+			<script type="text/javascript" src="resource/js/jsc3d/md2.js"></script>
 			<script type="text/javascript">
 				var canvas = document.getElementById('test');
 				var viewer = new JSC3D.Viewer(canvas);
-				viewer.setParameter('SceneUrl', 'resource/models/Test.obj');
+  				//mesh[0] = new JSC3D.Model();
 				viewer.setParameter('InitRotationX', 0);
 				viewer.setParameter('InitRotationY', -90);
 				viewer.setParameter('InitRotationZ', 90);
@@ -34,6 +35,10 @@
 				viewer.setParameter('MipMapping', 'on');
 				viewer.init();
 				viewer.update();
+			  	var md2_player = new JSC3D.Md2Player(viewer);
+			  	md2_player.replaceSceneFromUrls('resource/models/TestA.md2', 'undefined', 'undefined', 'undefined');
+			  	md2_player.pause();
+			  	//md2_player.play(1);
 			</script>
 			<footer>
 				<p>
