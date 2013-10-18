@@ -18,17 +18,18 @@
 			<header>
 				<h1>VOXTOX</h1>
 			</header>
-			<canvas id="test"width="400"height="400"></canvas></br>
-			<input id="Spin" type="range" min="0"max="20"step="2"value="0"></input></br>
-			<input type="button" onClick="Click()" value="Set Speed"></input></br>
+			<canvas id="test"width="400"height="400" onClick="Rotate()"></canvas></br>
+			Spin Speed
+			<input id="Spin" type="range" min="-40"max="40"step="1"value="0"></input></br>
+			Playback Speed
+			<input id="Play" type="range" min="1"max="10"step="1"value="0"></input></br>
 			<script type="text/javascript" src="resource/js/jsc3d/jsc3d.js"></script>
 			<script type="text/javascript" src="resource/js/jsc3d/md2.js"></script>
 			<script type="text/javascript">
 				var canvas = document.getElementById('test');
 				var viewer = new JSC3D.Viewer(canvas);
-  				//mesh[0] = new JSC3D.Model();
 				//viewer.setSceneURL('SceneUrl','resource/models/Test.obj');
-				viewer.replaceSceneFromUrl('resource/models/Test.obj');
+				//viewer.replaceSceneFromUrl('resource/models/Test.obj');
 				viewer.setParameter('InitRotationX', 0);
 				viewer.setParameter('InitRotationY', -90);
 				viewer.setParameter('InitRotationZ', 90);
@@ -39,22 +40,31 @@
 				viewer.enableDefaultInputHandler(false);
 				viewer.init();
 				viewer.update();
-			  	//var md2_player = new JSC3D.Md2Player(viewer);
+			  	var md2_player = new JSC3D.Md2Player(viewer);
 			  	//md2_player.onload = function ()
 				//{
 				//	md2_player.pause();
 				//};
-				//md2_player.replaceSceneFromUrls('resource/models/TestA.md2', 'undefined', 'undefined', 'undefined');
+				var PlaySpeedS = 10;
 				var SpinSpeed = document.getElementById("Spin");
-				var RotateModel = setInterval(function(){viewer.rotate(0,5+1, 0);viewer.update();}, 100);
+				var PlaySpeed = document.getElementById("Play");
+				Rotate();
+				md2_player.replaceSceneFromUrls('resource/models/TestA.md2', 'undefined', 'undefined', 'undefined');
+				//var RotateModel = setTimeout("Rotate()", 100);
 			  	//md2_player.pause();
 			  	//md2_player.play(1);
-				
-				function Click ()
+				function Rotate()
 				{
-					RotateModel = setInterval(function(){viewer.rotate(0,int(SpinSpeed.value)+1, 0);viewer.update();}, 100);
-					alert("Reset:"+SpinSpeed.value);
-				};
+					if(PlaySpeedS != PlaySpeed.value)
+					{
+						md2_player.pause();
+						md2_player.play(PlaySpeed.value);
+						PlaySpeedS = PlaySpeed.value;
+					}
+					viewer.rotate(0,SpinSpeed.value, 0);
+					viewer.update();
+					setTimeout("Rotate()", 50);
+				}
 			</script>
 			</script>
 		</div>
