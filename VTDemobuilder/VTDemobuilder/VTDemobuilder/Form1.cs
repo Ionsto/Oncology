@@ -60,6 +60,7 @@ namespace VTDemobuilder
                 XML += "<name>" + dataGridView1.Rows[i].Cells[1].Value + "</name>\n";
                 XML += "<rad>" + dataGridView1.Rows[i].Cells[2].Value + "</rad>\n";
                 XML += "<colour>" + dataGridView1.Rows[i].Cells[3].Value + "</colour>\n";
+                XML += "<weight>" + dataGridView1.Rows[i].Cells[4].Value + "</weight>\n";
                 XML += "</celltype>\n";
             }
             XML += "</type>\n";

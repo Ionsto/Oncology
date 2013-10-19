@@ -30,17 +30,18 @@
         {
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.Id_Cell = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Name_Cell = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Rad_Cell = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Colour_Cell = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.Weight = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(374, 211);
+            this.button1.Location = new System.Drawing.Point(422, 211);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(88, 29);
             this.button1.TabIndex = 0;
@@ -55,12 +56,21 @@
             this.Id_Cell,
             this.Name_Cell,
             this.Rad_Cell,
-            this.Colour_Cell});
+            this.Colour_Cell,
+            this.Weight});
             this.dataGridView1.Location = new System.Drawing.Point(12, 246);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(450, 178);
+            this.dataGridView1.Size = new System.Drawing.Size(498, 178);
             this.dataGridView1.TabIndex = 1;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(12, 12);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(404, 228);
+            this.textBox1.TabIndex = 2;
             // 
             // Id_Cell
             // 
@@ -82,19 +92,16 @@
             this.Colour_Cell.HeaderText = "Colour";
             this.Colour_Cell.Name = "Colour_Cell";
             // 
-            // textBox1
+            // Weight
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 12);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(350, 228);
-            this.textBox1.TabIndex = 2;
+            this.Weight.HeaderText = "Weight";
+            this.Weight.Name = "Weight";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(474, 436);
+            this.ClientSize = new System.Drawing.Size(517, 436);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button1);
@@ -110,11 +117,12 @@
 
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id_Cell;
         private System.Windows.Forms.DataGridViewTextBoxColumn Name_Cell;
         private System.Windows.Forms.DataGridViewTextBoxColumn Rad_Cell;
         private System.Windows.Forms.DataGridViewTextBoxColumn Colour_Cell;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Weight;
     }
 }
 
