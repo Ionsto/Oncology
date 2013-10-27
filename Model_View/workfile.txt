@@ -1,1 +1,1 @@
-Herro,lol,nope
+slice,10,10,10
