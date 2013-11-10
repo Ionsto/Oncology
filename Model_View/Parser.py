@@ -18,7 +18,7 @@ a = 0
 p = 0
 r = 0
 l = 0
-scales = 20
+scales = 10
 print("start")
 
 
@@ -32,6 +32,10 @@ for rx in range(1,sh.nrows):#go through each row and do something in blender
 			ob.location.z = (slice * 0.5)
 			ob.location.y = ((r + l)/ 2) / scales
 			ob.keyframe_insert(data_path='location', frame=(framec))
+			ob.scale.x = ((abs(l - r) / 2) / scales) + 1
+			ob.scale.y = ((abs(l - r) / 2) / scales) + 1
+			ob.scale.z = 1
+			ob.keyframe_insert(data_path='scale', frame=(framec))
 		slice = 0
 		framec += 10
 	ob = bpy.data.objects[GetName(slice)]
@@ -45,4 +49,8 @@ for rx in range(1,sh.nrows):#go through each row and do something in blender
 	ob.location.z = (slice * 0.5)
 	ob.location.y = ((r + l)/ 2) / scales
 	ob.keyframe_insert(data_path='location', frame=(framec))
+	ob.scale.x = ((abs(l - r) / 2) / scales) + 1
+	ob.scale.y = ((abs(l - r) / 2) / scales) + 1
+	ob.scale.z = 1
+	ob.keyframe_insert(data_path='scale', frame=(framec))
 	slice += 1
