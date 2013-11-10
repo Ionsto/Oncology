@@ -22,7 +22,7 @@
 			Spin Speed
 			<input id="Spin" type="range" min="-40"max="40"step="1"value="0"></input></br>
 			Playback Speed
-			<input id="Play" type="range" min="1"max="10"step="1"value="0"></input></br>
+			<input id="Play" type="range" min="0"max="10"step="1"value="0"></input></br>
 			<script type="text/javascript" src="resource/js/jsc3d/jsc3d.js"></script>
 			<script type="text/javascript" src="resource/js/jsc3d/md2.js"></script>
 			<script type="text/javascript">
@@ -58,8 +58,11 @@
 					if(PlaySpeedS != PlaySpeed.value)
 					{
 						md2_player.pause();
-						md2_player.play(PlaySpeed.value);
-						PlaySpeedS = PlaySpeed.value - 1;
+						if(PlaySpeed.value != 0)
+						{
+							md2_player.play(PlaySpeed.value);
+						}
+						PlaySpeedS = PlaySpeed.value;
 					}
 					viewer.rotate(0,SpinSpeed.value, 0);
 					viewer.update();
