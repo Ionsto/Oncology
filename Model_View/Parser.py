@@ -20,9 +20,12 @@ r = 0
 l = 0
 scales = 20
 print("start")
+
+
 for rx in range(1,sh.nrows):#go through each row and do something in blender
 	if int(sh.cell_value(rx,0)) != day:
 		day = int(sh.cell_value(rx, 0))
+		#set none data points to upper slice
 		for i in range(slice,15):
 			ob = bpy.data.objects[GetName(i)]
 			ob.location.x = ((a + p)/ 2) / scales
@@ -33,6 +36,7 @@ for rx in range(1,sh.nrows):#go through each row and do something in blender
 		framec += 10
 	ob = bpy.data.objects[GetName(slice)]
 	print(str(rx))
+	#get a,p,l,r
 	a = int(sh.cell_value(rx,1))
 	p = int(sh.cell_value(rx,2))
 	r = int(sh.cell_value(rx,3))
@@ -42,27 +46,3 @@ for rx in range(1,sh.nrows):#go through each row and do something in blender
 	ob.location.y = ((r + l)/ 2) / scales
 	ob.keyframe_insert(data_path='location', frame=(framec))
 	slice += 1
-	#ob.keyframe_insert('location', framec)
-	#ob.keyframe_insert(data_path='scale', frame)
-	#print sh.row(rx)
-'''
-#f = open('C:/Users/mpfs/Contacts/Documents/GitHub/Oncology/Model_View/workfile.txt', 'r')
-while True:
-	strs = f.readline()
-	if(strs == ""):
-		break
-	else:
-		strsS = strs.split(",")
-		if(strsS[0] == "slice"):
-			me = bpy.data.meshes.new("mesh")
-			ob = bpy.data.objects.new("slice", me)
-			if strsS[1] == "loc":
-				ob.location.x = int(strsS[2])
-				ob.location.y = int(strsS[3])
-				ob.location.z = int(strsS[4])
-			if strsS[1] == "sca":
-				ob.scale.x = int(strsS[2])
-				ob.scale.y = int(strsS[3])
-				ob.scale.z = int(strsS[4])
-f.close()
-'''
