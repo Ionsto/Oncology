@@ -1,2 +1,13 @@
 The notes.
 ---------------
+4 views (radio buttons) front back left right
+Perspective (topish)
+Blue
+Lables Top right? (view from top)
+No spin
+scale for playback sliders
+
+get paid
+(recite)
+£50 - one html(js)
+£25 - multiple data
