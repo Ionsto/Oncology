@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
@@ -19,15 +19,28 @@
 				<h1>VOXTOX</h1>
 			</header>
 			<canvas id="test"width="400"height="400" onClick="Rotate()"></canvas></br>
+			Location Presets<br />
+			<select id = "loc" ><!-- Location !-->
+				<option value = "1">one</option>
+				<option value = "2">two</option>
+				<option value = "3">three</option>
+				<option value = "4">four</option>
+			</select>
+			<input type="button" onclick="Set()" value="Set" />
+			<br />
 			Spin Speed
-			<input id="Spin" type="range" min="-40"max="40"step="1"value="0"></input></br>
+			<input id="Spin" type="range" min="-40"max="40"step="1"value="0" /><br/>
 			Playback Speed
-			<input id="Play" type="range" min="0"max="10"step="1"value="0"></input></br>
+            <input id="Play" type="range" min="0" max="10" step="1" value="0" /><br/>
 			<script type="text/javascript" src="resource/js/jsc3d/jsc3d.js"></script>
 			<script type="text/javascript" src="resource/js/jsc3d/md2.js"></script>
 			<script type="text/javascript">
 				var canvas = document.getElementById('test');
 				var viewer = new JSC3D.Viewer(canvas);
+				var loc = document.getElementById("loc");
+				var RotationX = 0;//abs rot
+				var RotationY = -90;//abs rot
+				var RotationZ = 0;//abs rot
 				//viewer.setSceneURL('SceneUrl','resource/models/Test.obj');
 				//viewer.replaceSceneFromUrl('resource/models/Test.obj');
 				viewer.setParameter('InitRotationX', 0);
@@ -45,7 +58,7 @@
 				//{
 				//	md2_player.pause();
 				//};
-				var PlaySpeedS = 10;
+				var PlaySpeedS = 0;
 				var SpinSpeed = document.getElementById("Spin");
 				var PlaySpeed = document.getElementById("Play");
 				Rotate();
@@ -53,6 +66,34 @@
 				//var RotateModel = setTimeout("Rotate()", 100);
 			  	//md2_player.pause();
 			  	//md2_player.play(1);
+				function RotateView(x,y,z)
+				{
+					viewer.rotate(x,y,z);
+					RotationX += x;
+					RotationY += y;
+					RotationZ += z;
+				}
+				function Set()
+				{
+				    var to = loc.selectedIndex;
+				    SetZero();
+				    if (to == 0) {
+				        RotateView(0, -90, 0);
+				    }
+				    if (to == 1) {
+				        RotateView(0, 90, 0);
+				    }
+				    if (to == 2) {
+				        RotateView(90, 0, 0);
+				    }
+				}
+				function SetZero()
+				{
+				    viewer.rotate(-RotationX, -RotationY, -RotationZ);
+				    RotationX = 0;
+				    RotationY = 0;
+				    RotationZ = 0;
+				}
 				function Rotate()
 				{
 					if(PlaySpeedS != PlaySpeed.value)
@@ -64,11 +105,10 @@
 						}
 						PlaySpeedS = PlaySpeed.value;
 					}
-					viewer.rotate(0,SpinSpeed.value, 0);
+					RotateView(0,parseInt(SpinSpeed.value),0);
 					viewer.update();
 					setTimeout("Rotate()", 50);
 				}
-			</script>
 			</script>
 		</div>
 	</body>
