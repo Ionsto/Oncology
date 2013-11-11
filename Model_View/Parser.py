@@ -18,7 +18,7 @@ a = 0
 p = 0
 r = 0
 l = 0
-scales = 10
+scales = 20
 print("start")
 
 
@@ -28,7 +28,7 @@ for rx in range(1,sh.nrows):#go through each row and do something in blender
 		#set none data points to upper slice
 		for i in range(slice,15):
 			ob = bpy.data.objects[GetName(i)]
-			ob.location.x = ((a + p)/ 2) / scales
+			ob.location.x = (((a + p)/ 2) / scales) - 4
 			ob.location.z = (slice * 0.5)
 			ob.location.y = ((r + l)/ 2) / scales
 			ob.keyframe_insert(data_path='location', frame=(framec))
@@ -45,7 +45,7 @@ for rx in range(1,sh.nrows):#go through each row and do something in blender
 	p = int(sh.cell_value(rx,2))
 	r = int(sh.cell_value(rx,3))
 	l = int(sh.cell_value(rx,4))
-	ob.location.x = ((a + p)/ 2) / scales
+	ob.location.x = (((a + p)/ 2) / scales) - 4
 	ob.location.z = (slice * 0.5)
 	ob.location.y = ((r + l)/ 2) / scales
 	ob.keyframe_insert(data_path='location', frame=(framec))

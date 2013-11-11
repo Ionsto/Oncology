@@ -3997,8 +3997,8 @@ JSC3D.Matrix3x4.prototype.rotateAboutXAxis = function(angle) {
 		var m22 = cosA * this.m22 + sinA * this.m12;
 		var m23 = cosA * this.m23 + sinA * this.m13;
 
-		//this.m10 = m10; this.m11 = m11; this.m12 = m12; this.m13 = m13;
-		//this.m20 = m20; this.m21 = m21; this.m22 = m22; this.m23 = m23;
+		this.m10 = m10; this.m11 = m11; this.m12 = m12; this.m13 = m13;
+		this.m20 = m20; this.m21 = m21; this.m22 = m22; this.m23 = m23;
 	}
 };
 

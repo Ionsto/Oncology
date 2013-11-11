@@ -29,7 +29,7 @@
 			<input type="button" onclick="Set()" value="Set" />
 			<br />
 			Spin Speed
-			<input id="Spin" type="range" min="-300"max="300"step="1"value="0" /><br/>
+			<input id="Spin" type="range" min="-40"max="40"step="1"value="0" /><br/>
 			Playback Speed
             <input id="Play" type="range" min="0" max="10" step="1" value="0" /><br/>
 			<script type="text/javascript" src="resource/js/jsc3d/jsc3d.js"></script>
@@ -58,11 +58,11 @@
 				//{
 				//	md2_player.pause();
 				//};
-				var PlaySpeedS = 0;
+				var PlaySpeedS = 10;
 				var SpinSpeed = document.getElementById("Spin");
 				var PlaySpeed = document.getElementById("Play");
 				Rotate();
-				md2_player.replaceSceneFromUrls('resource/models/Data.md2', 'undefined', 'undefined', 'undefined');
+				md2_player.replaceSceneFromUrls('resource/models/testa.md2', 'undefined', 'undefined', 'undefined');
 				//var RotateModel = setTimeout("Rotate()", 100);
 			  	//md2_player.pause();
 			  	//md2_player.play(1);
@@ -96,10 +96,6 @@
 				}
 				function Rotate()
 				{
-					if(PlaySpeedS == 0)
-					{
-						md2_player.pause();
-					}
 					if(PlaySpeedS != PlaySpeed.value)
 					{
 						md2_player.pause();
@@ -110,7 +106,6 @@
 						PlaySpeedS = PlaySpeed.value;
 					}
 					RotateView(0,parseInt(SpinSpeed.value),0);
-					//viewer.rotate(0,SpinSpeed.value,0);
 					viewer.update();
 					setTimeout("Rotate()", 50);
 				}
