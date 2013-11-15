@@ -36,7 +36,7 @@ for rx in range(1,sh.nrows):#go through each row and do something in blender
 			ob.scale.y = ((abs(l - r) / 2) / scales) + 1
 			ob.scale.z = 1
 			ob.keyframe_insert(data_path='scale', frame=(framec))
-			bpy.data.objects["Plane"].keyframe_insert(data_path='scale', frame=(framec))
+		bpy.data.objects["Plane"].keyframe_insert(data_path='scale', frame=(framec))
 		slice = 0
 		framec += 10
 	ob = bpy.data.objects[GetName(slice)]
