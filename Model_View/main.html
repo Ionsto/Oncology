@@ -27,7 +27,7 @@
 			<input name="dir" type="radio"id="4" onclick="Set()">Top Oblique</input>
 			<br />
 			Playback Speed
-            <input id="Play" type="range" min="-10" max="10" step="1" value="0"  onchange="SpeedChange()"/><br/>
+            <input id="Play" type="range" min="0" max="10" step="1" value="0"  onchange="SpeedChange()"/><br/>
 			<script type="text/javascript" src="resource/js/jsc3d/jsc3d.js"></script>
 			<script type="text/javascript" src="resource/js/jsc3d/md2.js"></script>
 			<script type="text/javascript">
@@ -36,13 +36,13 @@
 				var RotationX = 0;//abs rot
 				var RotationY = -90;//abs rot
 				var RotationZ = -90;//abs rot
-				//viewer.setSceneURL('SceneUrl','resource/models/Test.obj');
-				//viewer.replaceSceneFromUrl('resource/models/Test.obj');
+				//viewer.setSceneURL('SceneUrl','resource/models/Test.3ds');
+				//viewer.replaceSceneFromUrl('resource/models/Data.3ds');
 				viewer.setParameter('InitRotationX', 0);
 				viewer.setParameter('InitRotationY', -90);
 				viewer.setParameter('InitRotationZ', -90);
-				viewer.setParameter('ModelColor', '#57524C');
-				viewer.setParameter('BackgroundColor1', '#FFFFFF');
+				viewer.setParameter('ModelColor', '#AAAAFF');
+				//viewer.setParameter('BackgroundColor1', '#FFFFFF');
 				viewer.setParameter('RenderMode', 'texturesmooth');
 				viewer.setParameter('MipMapping', 'on');
 				viewer.enableDefaultInputHandler(false);
@@ -60,7 +60,10 @@
 				function SpeedChange()
 				{
 					md2_player.pause();
-					md2_player.play(parseInt(PlaySpeed.value));
+					if(parseInt(PlaySpeed.value) != 0)
+					{
+						md2_player.play(parseInt(PlaySpeed.value));
+					}
 				}
 				md2_player.replaceSceneFromUrls('resource/models/Data.md2', 'undefined', 'undefined', 'undefined');
 				//viewer.update();
