@@ -19,13 +19,12 @@
 				<h1>VOXTOX<img src="http://www.escience.cam.ac.uk/projects/voxtox/images/voxtox_logo.png"></img></h1>
 			</header>
 			<canvas id="test"width="400"height="400" onClick="Rotate()"></canvas></br>
-			Location Presets<br />
-			<input name="dir" type="radio"id="0">Front</input>
-			<input name="dir" type="radio"id="1">Back</input>
-			<input name="dir" type="radio"id="2">Left</input>
-			<input name="dir" type="radio"id="3">Right</input>
-			<input name="dir" type="radio"id="4">Front top</input>
-			<input name="dir" type="button" onclick="Set()" value="Set" />
+			Viewpoint Presets<br />
+			<input name="dir" type="radio"id="0" onclick="Set()">Front</input>
+			<input name="dir" type="radio"id="1" onclick="Set()">Back</input>
+			<input name="dir" type="radio"id="2" onclick="Set()">Left</input>
+			<input name="dir" type="radio"id="3" onclick="Set()">Right</input>
+			<input name="dir" type="radio"id="4" onclick="Set()">Top Oblique</input>
 			<br />
 			Playback Speed
             <input id="Play" type="range" min="-10" max="10" step="1" value="0"  onchange="SpeedChange()"/><br/>
@@ -78,17 +77,22 @@
 				function Set()
 				{
 				    SetZero();
+				    RotateView(0, -90, -90);
 				    if (document.getElementById("0").checked) {//Front
-				        RotateView(0, -90, -90);
+				        RotateView(0, 0, 0);
 				    }
 				    if (document.getElementById("1").checked) {//Back
-				        RotateView(0, 90, 90);
+				        RotateView(0, 180, 0);
 				    }
 				    if (document.getElementById("2").checked) {//Left
-				        RotateView(0, -90, -90);
+				        RotateView(0, 90, 0);
 				    }
 				    if (document.getElementById("3").checked) {//Right
-				        RotateView(0, -90, -90);
+				        RotateView(0, -90, 0);
+				    }
+				    if (document.getElementById("4").checked) {//Odd rot
+				        RotateView(0, 45, 0);
+				        RotateView(45, 0, 0);
 				    }
 				}
 				function SetZero()
