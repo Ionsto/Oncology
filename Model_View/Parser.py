@@ -14,28 +14,30 @@ sh = book.sheet_by_index(0)
 day = 1
 slice = 0
 framec = 0
+Step = 4
+XOffset = -12
 a = 0
 p = 0
 r = 0
 l = 0
-scales = 20
+scales = 5
 print("start")
-
+def Set(ob):
+	ob.location.x = (((a + p)/ 2) / scales) + XOffset
+	ob.location.z = (slice * Step) / scales
+	ob.location.y = ((r + l)/ 2) / scales
+	ob.keyframe_insert(data_path='location', frame=(framec))
+	ob.scale.x = ((abs(l - r) / 2) / scales) + 1
+	ob.scale.y = ((abs(l - r) / 2) / scales) + 1
+	ob.scale.z = 1
+	ob.keyframe_insert(data_path='scale', frame=(framec))
 
 for rx in range(1,sh.nrows):#go through each row and do something in blender
 	if int(sh.cell_value(rx,0)) != day:
 		day = int(sh.cell_value(rx, 0))
 		#set none data points to upper slice
 		for i in range(slice,15):
-			ob = bpy.data.objects[GetName(i)]
-			ob.location.x = (((a + p)/ 2) / scales) - 4
-			ob.location.z = (slice * 0.5)
-			ob.location.y = ((r + l)/ 2) / scales
-			ob.keyframe_insert(data_path='location', frame=(framec))
-			ob.scale.x = ((abs(l - r) / 2) / scales) + 1
-			ob.scale.y = ((abs(l - r) / 2) / scales) + 1
-			ob.scale.z = 1
-			ob.keyframe_insert(data_path='scale', frame=(framec))
+			Set(bpy.data.objects[GetName(i)])
 		bpy.data.objects["Plane"].keyframe_insert(data_path='scale', frame=(framec))
 		slice = 0
 		framec += 10
@@ -46,12 +48,5 @@ for rx in range(1,sh.nrows):#go through each row and do something in blender
 	p = int(sh.cell_value(rx,2))
 	r = int(sh.cell_value(rx,3))
 	l = int(sh.cell_value(rx,4))
-	ob.location.x = (((a + p)/ 2) / scales) - 4
-	ob.location.z = (slice * 0.5)
-	ob.location.y = ((r + l)/ 2) / scales
-	ob.keyframe_insert(data_path='location', frame=(framec))
-	ob.scale.x = ((abs(l - r) / 2) / scales) + 1
-	ob.scale.y = ((abs(l - r) / 2) / scales) + 1
-	ob.scale.z = 1
-	ob.keyframe_insert(data_path='scale', frame=(framec))
+	Set(ob)
 	slice += 1
