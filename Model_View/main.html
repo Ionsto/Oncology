@@ -43,10 +43,12 @@
 				viewer.setParameter('InitRotationY', -90);
 				viewer.setParameter('InitRotationZ', 90);
 				viewer.setParameter('ModelColor', '#AAAAFF');
-				//viewer.setParameter('BackgroundColor1', '#FFFFFF');
-				viewer.setParameter('RenderMode', 'texturesmooth');
+				viewer.setParameter('BackgroundColor1', '#FFFFFF');
+				viewer.setParameter('BackgroundColor2', '#FFFFFF');
+				viewer.setParameter('RenderMode', 'smooth');
+				viewer.setParameter('Definition','High');
 				viewer.setParameter('MipMapping', 'on');
-				//viewer.enableDefaultInputHandler(false);
+				viewer.enableDefaultInputHandler(false);
 				viewer.init();
 				viewer.update();
 			  	var md2_player = new JSC3D.Md2Player(viewer);
@@ -107,7 +109,7 @@
 				    }
 				    if (document.getElementById("4").checked) {//Odd rot
 				        RotateView(0, 45, 0);
-				        RotateView(-45, 0, 0);
+				        RotateView(30, 0, 0);
 						Begining = "Looking from an oblique angle ";
 				    }
 					OutView.innerHTML = Begining + "at " + FPS.toString() + " days per second";//FPS System
