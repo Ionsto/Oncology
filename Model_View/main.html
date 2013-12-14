@@ -6,7 +6,7 @@
 		<title>Main</title>
 		<meta name="description" content="VoxTox viewer">
 		<meta name="author" content="Sam">
-		<!--[if lt IE 9]><script type="text/javascript" src="resource/js/FlashCanvasPro/bin/flashcanvas.js"></script><![endif]-->
+		<!--[if lt IE 9]><script type="text/javascript" src="resource/js/FlashCanvas/bin/flashcanvas.js"></script><![endif]-->
 		
 	</head>
 
@@ -16,7 +16,7 @@
 				<h1>VOXTOX<img src="http://www.escience.cam.ac.uk/projects/voxtox/images/voxtox_logo.png"></img></h1>
 			</header>
 			<div id="veiwloc"></div>
-			<canvas id="test"width="400"height="400" onClick="Rotate()"></canvas></br>
+			<canvas id="renderframe"width="400"height="400" ></canvas></br>
 			Viewpoint Presets<br />
 			<input name="dir" type="radio"id="0" onclick="Set()">Front</input>
 			<input name="dir" type="radio"id="1" onclick="Set()">Back</input>
@@ -26,24 +26,28 @@
 			<br />
 			Playback Speed
             <input id="Play" type="range" min="0" max="30" step="1" value="0"  onchange="SpeedChange()"/><br/>
-			<!--[if !IE]><!-->
+			
+			<!--[if !IE]> -->
 				<script type="text/javascript" src="resource/js/jsc3d/jsc3d.js"></script>
-			<!--<![endif]-->
+				<script type="text/javascript">
+					alert("NIE, NIE!!!");
+				</script>
+			<!-- <![endif]-->
 			<!--[if IE]>
-			 <script type="text/javascript" src="../jsc3d_ie.js"></script>
-			 <script type="text/javascript">
-			  JSC3D.Texture.cv = document.getElementById('tex');
-			 </script>
-			<![endif]-->
+				<script type="text/javascript" src="resource/js/jsc3d/jsc3d_ie.js"></script>
+				<script type="text/javascript">
+					alert("IE, IE!!!");
+					JSC3D.Texture.cv = document.getElementById('tex');
+				</script>
+			<!-- <![endif]-->
+			
 			<script type="text/javascript" src="resource/js/jsc3d/md2.js"></script>
 			<script type="text/javascript">
-				var canvas = document.getElementById('test');
+				var canvas = document.getElementById('renderframe');
 				var viewer = new JSC3D.Viewer(canvas);
 				var RotationX = 0;//abs rot
 				var RotationY = -90;//abs rot
 				var RotationZ = -90;//abs rot
-				//viewer.setSceneURL('SceneUrl','resource/models/Test.3ds');
-				//viewer.replaceSceneFromUrl('resource/models/Data.3ds');
 				viewer.setParameter('InitRotationX', 0);
 				viewer.setParameter('InitRotationY', -90);
 				viewer.setParameter('InitRotationZ', 90);
