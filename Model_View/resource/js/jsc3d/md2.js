@@ -73,6 +73,7 @@ JSC3D.Md2Player.prototype.replaceSceneFromUrls = function(mainModelUrl, mainSkin
 				if(attachmentMesh)
 					scene.addChild(attachmentMesh);
 				self.play();
+				self.pause();
 			}
 		}
 		mainModelLoader.onprogress = function(task, progress) {
@@ -121,6 +122,7 @@ JSC3D.Md2Player.prototype.replaceSceneFromUrls = function(mainModelUrl, mainSkin
 		};
 		tex.createFromUrl(attachmentSkinUrl);
 	}
+	self.pause();
 };
 
 /**
