@@ -117,23 +117,11 @@ JSC3D.Viewer = function(canvas, parameters) {
 
 	// setup input handlers
 	var self = this;
-	if(window.attachEvent)
-	{
-		canvas.attachEvent('onmousedown', function(e){self.mouseDownHandler(e);});
-		canvas.attachEvent('onmouseup', function(e){self.mouseUpHandler(e);});
-		canvas.attachEvent('onmousemove', function(e){self.mouseMoveHandler(e);});
-		document.attachEvent('onkeydown', function(e){self.keyDownHandler(e);});
-		document.attachEvent('onkeyup', function(e){self.keyUpHandler(e);});
-	}
-	if(window.addEventListener)
-	{
-		canvas.addEventListener('onmousedown', function(e){self.mouseDownHandler(e);});
-		canvas.addEventListener('onmouseup', function(e){self.mouseUpHandler(e);});
-		canvas.addEventListener('onmousemove', function(e){self.mouseMoveHandler(e);});
-		document.addEventListener('onkeydown', function(e){self.keyDownHandler(e);});
-		document.addEventListener('onkeyup', function(e){self.keyUpHandler(e);});
-	}
-	else
+	canvas.attachEvent('onmousedown', function(e){self.mouseDownHandler(e);});
+	canvas.attachEvent('onmouseup', function(e){self.mouseUpHandler(e);});
+	canvas.attachEvent('onmousemove', function(e){self.mouseMoveHandler(e);});
+	document.attachEvent('onkeydown', function(e){self.keyDownHandler(e);});
+	document.attachEvent('onkeyup', function(e){self.keyUpHandler(e);});
 };
 
 /**

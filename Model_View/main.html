@@ -15,6 +15,7 @@
 				<h1>VOXTOX<img src="http://www.escience.cam.ac.uk/projects/voxtox/images/voxtox_logo.png"></img></h1>
 			</header>
 			<div id="veiwloc"></div>
+			<div id="debug"><!-- this in mix with the console system (first line) allowse eficent debugging!-->
 			<canvas id="renderframe"width="400"height="400" ></canvas></br>
 			Viewpoint Presets<br />
 			<input name="dir" type="radio"id="0" onclick="Set()">Front</input>
@@ -22,12 +23,16 @@
 			<input name="dir" type="radio"id="2" onclick="Set()">Left</input>
 			<input name="dir" type="radio"id="3" onclick="Set()">Right</input>
 			<input name="dir" type="radio"id="4" onclick="Set()">Top Oblique</input>
+			</div>
 			<br />
 			Playback Speed
             <input id="Play" type="range" min="0" max="30" step="1" value="0"  onchange="SpeedChange()"/><br/>	
+			<script type="text/javascript" src="resource/js/jsc3d/jsc3d.js"></script>
 			<script type="text/javascript" src="resource/js/jsc3d/jsc3d_ie.js"></script>
+			<script type="text/javascript" src="resource/js/jsc3d/jsc3d.console.js"></script>
 			<script type="text/javascript" src="resource/js/jsc3d/md2.js"></script>
 			<script type="text/javascript">
+				//JSC3D.console.setup('debug', '120px');
 				var canvas = document.getElementById('renderframe');
 				var viewer = new JSC3D.Viewer(canvas);
 				var RotationX = 0;//abs rot
@@ -46,10 +51,6 @@
 				viewer.init();
 				viewer.update();
 			  	var md2_player = new JSC3D.Md2Player(viewer);
-			  	//md2_player.onload = function ()
-				//{
-				//	md2_player.pause();
-				//};
 				var PlaySpeedS = 1;
 				var loc = document.getElementById("loc");
 				var PlaySpeed = document.getElementById("Play");
