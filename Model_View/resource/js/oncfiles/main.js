@@ -36,7 +36,7 @@ function SpeedChange()
 	}
 	OutView.innerHTML = Begining + "at " + FPS.toString() + " days per second";//FPS System
 }
-md2_player.replaceSceneFromUrls('resource/models/Data.md2', 'undefined', 'undefined', 'undefined');
+md2_player.replaceSceneFromUrls('resource/models/First/Data.md2', 'undefined', 'undefined', 'undefined');
 function RotateView(x,y,z)
 {
 	viewer.rotate(x,y,z);
