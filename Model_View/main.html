@@ -12,14 +12,23 @@
 	<body>
 		<div>
 			<header>
-				<h1>VOXTOX<img src="http://www.escience.cam.ac.uk/projects/voxtox/images/voxtox_logo.png"></img></h1>
+				<h1>VOXTOX<img src="http://www.escience.cam.ac.uk/projects/voxtox/images/voxtox_logo.png" width="50" height="50"></img></h1>
 			</header>
-			<div id="veiwloc"></div>
+			
+			<div >
+			</div>
+			
 			<div id="debug"><!-- this in mix with the console system (first line) allowse eficent debugging!-->
+<<<<<<< HEAD
 			<canvas id="renderframe"width="400"height="400" >
 			<video>
 			</video>
 			</canvas></br>
+=======
+			<canvas id="renderframe"width="350"height="350" ></canvas>
+			</br>
+			<div id="veiwloc"></div>
+>>>>>>> 960c5df44c89d6696f79a6d9f99262f5d9aa7dfb
 			Viewpoint Presets<br />
 			<input name="dir" type="radio"id="0" onclick="Set()">Front</input>
 			<input name="dir" type="radio"id="1" onclick="Set()">Back</input>
@@ -30,12 +39,28 @@
 			<br />
 			Playback Speed
             <input id="Play" type="range" min="0" max="30" step="1" value="0"  onchange="SpeedChange()" onclick="SpeedChange()"/><br/>	
-			
+			<div >			</br>		
+			This animation shows how the rectum changes from day to day. 
+			To run the animation select a viewpoint and playback speed.</br></br>
+			Radiotherapy treatment of prostate cancer typically takes place over a number of weeks.</br>
+			Movement of the rectum from day to day might cause poor control of dose to the recturm and hence unwanted side effects.</br>
+			</br>
+			The data has been collected from x-ray images and the location of the rectum on the images identified by hand. </br>
+			 </br> 
+			The 3D model was created in Blender using the clinical data and exported as a MD2 dataset.</br> 
+			This html5/javascript web page uses the JSC3D API to render and parse the MD2 file.</br>
+			</br>
+			Clinical data analysis by Dr Jessica Scaife. Graphics implementation by Sam Sutcliffe.
+			</br>
+			</div></br>
 			<script type="text/javascript" src="resource/js/jsc3d/jsc3d.js"></script>
 			<script type="text/javascript" src="resource/js/jsc3d/jsc3d_ie.js"></script>
 			<script type="text/javascript" src="resource/js/jsc3d/jsc3d.console.js"></script>
 			<script type="text/javascript" src="resource/js/jsc3d/md2.js"></script>
 			<script type="text/javascript" src="resource/js/oncfiles/main.js"></script>
+			
+			
+			
 		</div>
 	</body>
 </html>
